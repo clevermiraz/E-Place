@@ -1,0 +1,47 @@
+{% load static %}
+
+
+<header class="header">
+    <div class="container container--narrow">
+        <a href="{% url 'books:product_list' %}" class="header__logo">
+            <img src="{% static 'images/chapterclose_logo.png' %}"
+            alt="ChapterClose" />
+        </a>
+        <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+                <span>Menu</span>
+                <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+                <li class="header__menuItem">
+                    <a href="{% url 'books:create_product' %}">Sell Now</a>
+                </li>
+
+                <li class="header__menuItem">
+                    <a href="{% url 'books:product_list' %}">Books</a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+                <li class="header__menuItem">
+                    <a href="{% url 'account:inbox' %}">Inbox</a>
+                </li>
+
+                <li class="header__menuItem">
+                    <a href="{% url 'account:account' %}">Account</a>
+                </li>
+
+                <li class="header__menuItem">
+                    <a href="{% url 'account:logout' %}" class="btn btn--sub">Logout</a>
+                </li>
+
+                {% else %}
+                <li class="header__menuItem">
+                    <a href="{% url 'account:login' %}" class="btn btn--sub">Login</a>
+                </li>
+
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,49 @@
+{% for product in page_obj %}
+    <tr>
+        <td class="settings__thumbnail">
+            <a href="{{ product.get_absolute_url }}"><img src="{{ product.book_image.url }}"
+                alt="Book Thumbnail" /></a>
+        </td>
+
+        <td class="settings__tableInfo">
+            <a href="{{ product.get_absolute_url }}">
+                {{ product.title }}
+            </a>
+
+            <p>
+                {{ product.description | truncatewords:10 |safe }}
+            </p>
+        </td>
+
+        <td class="settings__tableActions">
+            <div class="project__tags">
+                <span class="tag tag--pill tag--main">
+                    <small>{{ product.category }}</small>
+                </span>
+            </div>
+
+            <div class="project__tags">
+                <span class="tag tag--pill tag--main">
+                    <small>Tk {{ product.price }}</small>
+                </span>
+            </div>
+
+            <div class="project__tags">
+                <a href="{{ product.owner.get_absolute_url }}">Contact Now</a>
+            </div>
+        </td>
+    </tr>
+{% endfor %}
+
+{% if page_obj.has_next %}
+    <tr id="load-more">
+        <td colspan="3" class="text-center">
+              <button class="btn btn primary"
+                      hx-get="{% url 'books:product_list' %}?page={{ page_obj.next_page_number }}"
+                      hx-target="#load-more"
+                      hx-swap="outerHTML">
+                  Load More
+              </button>
+        </td>
+    </tr>
+{% endif %}

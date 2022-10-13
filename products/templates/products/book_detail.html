@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Main Section -->
+<main class="singleProject my-md">
+    <div class="container">
+        <div class="layout">
+            <!-- Tools & Stacks -->
+            <div class="column column--1of3">
+                <h3 class="singleProject__subtitle">Category</h3>
+                <div class="singleProject__toolStack">
+                    <span class="tag tag--pill tag--sub tag--lg">
+                        <small>{{ product.category }}</small>
+                    </span>
+                </div>
+            </div>
+            <!-- Single Project details -->
+            <div class="column column--2of3">
+                <img class="singleProject__preview" src="{{product.book_image.url}}" alt="portfolio thumbnail" />
+                <a href="{{ product.owner.get_absolute_url }}" class="singleProject__developer">
+                    {{ product.owner.name }}
+                </a>
+                <a href="{{ product.owner.get_absolute_url }}" class="contactnow__developer">
+                    Contact Now
+                </a>
+                <h2 class="singleProject__title">{{product.title}}</h2>
+
+                <p class="singleProject__subtitle">price: Tk {{ product.price }}</p>
+                <br>
+                <h3 class="singleProject__subtitle">About the Book</h3>
+                <div class="singleProject__info">
+                    <p>{{ product.description | safe }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

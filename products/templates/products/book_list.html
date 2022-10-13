@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Main Section -->
+<main class="projects">
+    <section class="hero-section text-center">
+        <div class="container container--narrow">
+            <div class="hero-section__search">
+                <form id="searchForm" class="form" action="{% url 'books:product_list' %}" method="get">
+                    <div class="form__field">
+                        <label for="formInput#search">Find Book </label>
+                        <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                            value="{{ search_query }}" placeholder="Search by Book Title" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="custom_layout">
+            <table class="settings__table">
+                {% include 'products/partial/list.html' %}
+            </table>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
